@@ -23,7 +23,7 @@ function Selector ( props ){
                 value={value} disabled={disabled} 
                 type='text'
                 onChange={ ( e ) => {
-                    let newValue = pattern.test( e.target.value ) ? e.target.value : value;
+                    let newValue = pattern ? pattern.test( e.target.value ) ? e.target.value : value : e.target.value;
                     changeHandler( newValue )                    
                 } }></input>
 </div>
