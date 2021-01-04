@@ -1,6 +1,20 @@
 
-.is-active{
-    background-color: #ff7d47 !important;
-    color : #fff;
-    font-weight: bold;
+
+.custom-tab{
+    ul.tabs{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        li{
+            flex: 1;
+            button{
+                width: 100%;
+                padding: 15px;
+                color: #1779ba;
+                &.is-active{
+                    background-color: #e6e6e6;
+                }
+            }
+        }
+    }
 }

@@ -9,6 +9,8 @@ import { Provider } from 'react-redux'
 import storeConfig from './store'
 import RebalanceTable from './components/step2/RebalanceRiskTable'
 
+import Tabs from './components/shared/Tabs'
+
 const store = storeConfig()
 
 function App() {
@@ -16,11 +18,22 @@ function App() {
     <div >
       <Provider store={store}>
         <Header></Header>
-        <RiskSelector></RiskSelector>
-        <RiskTableList></RiskTableList>
-        <RiskChart></RiskChart>
-        <TableResumeRisk></TableResumeRisk>
-        <RebalanceTable></RebalanceTable>
+        <div className="grid-container">
+          <RiskSelector></RiskSelector>
+          <Tabs tabsData={
+            [{
+              'label' : 'Risk Table',
+              'component' : <RiskTableList></RiskTableList>
+            },
+            {
+                'label' : 'Risk Chart',
+                'component' : <RiskChart></RiskChart>
+            }]} ></Tabs>
+          
+          <TableResumeRisk></TableResumeRisk>
+          <RebalanceTable></RebalanceTable>
+          
+        </div>
       </Provider>
     </div>
   );
