@@ -8,7 +8,7 @@ import './../../style/index.scss'
 
 function RiskTableList (){
 
-    const getTHeaders = () => [ "Risk", "Bonds %", "Large Cap %", "Mid Cap %", "Foreign", "Small Cap %"];
+    const getTHeaders = () => [ "Risk", "Bonds %", "Large Cap %", "Mid Cap %", "Foreign %", "Small Cap %"];
     const getTRows = () => {
         return Object.keys( riskLevelData ).map( level => {
             let riskData =  riskLevelData[level]

@@ -11,7 +11,7 @@ function RiskResumeTable (){
     let riskLevelSelected = useSelector( store => store.riskLevel )
     let riskData =  riskLevelData[riskLevelSelected.level]
 
-    const getTHeaders = ()=>[ "Bonds %", "Large Cap %", "Mid Cap %", "Foreign", "Small Cap %"];
+    const getTHeaders = ()=>[ "Bonds %", "Large Cap %", "Mid Cap %", "Foreign %", "Small Cap %"];
     const getTRows = () => {
         return riskData ? [[
             riskData.Bonds,
