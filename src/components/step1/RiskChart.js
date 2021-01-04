@@ -23,22 +23,18 @@ function ChartRisk( ){
 
     const options = {
       title: "Investment Portfolio",
-      pieHole: 0.4,
+      pieHole: 0.3,
       is3D: false,
       pieSliceText: 'label',
     };
 
-    const chart = () => ( <div className="App">
-          <Chart
+    return riskLevelData[ riskLevelSelected.level ] ? <Chart
             chartType="PieChart"
             width="100%"
-            height="450px"
+            height="500px"
             data={ [ ["Name", "Amount porcent"], ...riskChartData( ) ] }
             options={options}
-          />
-        </div>)
-
-    return riskLevelData[ riskLevelSelected.level ] ? chart() : null
+          /> : null
 }
 
 

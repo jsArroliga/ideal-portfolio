@@ -5,6 +5,8 @@ import Input from './../shared/Input'
 import riskLevelData from '../../data/riskLevelData.json'
 import { useSelector } from 'react-redux'
 
+import Button from './../shared/Button'
+
 const rebalance = ( tagPrcent, amount, total )=>{
     const amountByPrcent = (total/100)*tagPrcent
     return [ parseFloatFixed(amountByPrcent), parseFloatFixed( amountByPrcent - amount )]
@@ -203,9 +205,9 @@ function RebalanceTable(  ){
             </tbody>
         </table>
 
-        <button onClick={  () => { callRebalance() } }>
+        <Button bClass={'success'} onClick={  () => { callRebalance() } }>
                         rebalance
-        </button>
+        </Button>
     </div>
 }
 

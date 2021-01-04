@@ -18,12 +18,9 @@ function Tabs ( props ){
     }
 
     const getTabsContent = ( ) => {
-        return tabsData.map( (tab, index) => {
-            let isActive = index === tabActive;
-            return <div className={isActive ? 'tabs-panel is-active' : 'tabs-panel'} id={index} key={ `${tabId}-component-${index}` }>
-            { tab.component }
+        return <div className={'tabs-panel is-active'} id={tabActive} key={ `${tabId}-component-${tabActive}` }>
+            { tabsData[tabActive].component }
         </div>
-        } )
     }
 
     return <div className='custom-tab'>
