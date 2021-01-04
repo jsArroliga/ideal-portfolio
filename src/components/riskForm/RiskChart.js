@@ -34,7 +34,7 @@ function ChartRisk( ){
             height="400px"
             data={ [ ["Name", "Amount porcent"], ...riskChartData( ) ] }
             options={options}
-          /> : null
+          /> : <h5 className={'text-center'}> Please , select a risk level </h5>
 }
 
 
