@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 import storeConfig from './store'
 import RiskForm from './container/RiskForm';
 
+import './style/index.scss'
+
 const store = storeConfig()
 
 function App() {

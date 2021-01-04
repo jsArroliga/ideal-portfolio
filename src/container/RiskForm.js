@@ -44,7 +44,7 @@ function RiskForm() {
     }
   }
 
-  return <Stepper steps={ steps } startAt={ 1 }></Stepper>;
+  return <Stepper steps={ steps } startAt={ 1 } className={'mt-1 blue-border-rounded'}></Stepper>;
 }
 
 export default RiskForm;

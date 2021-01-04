@@ -1,0 +1,36 @@
+//html
+html{
+    font-size: 14px;
+}
+
+.mr-1{
+    margin-right: 1em;
+}
+.mt-1{
+    margin-top: 1em;
+}
+.mb-1{
+    margin-bottom: 1em;
+}
+.mb-0{
+    margin-bottom: 0;
+}
+
+
+//widht
+.w-half{
+    width: 50%;
+}
+
+//borders
+
+.blue-border-rounded{
+    border : 1px solid #e6e6e6;
+    border-radius: 5px;
+    padding : 15px;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+}
+
+.rounded{
+    border-radius: 5px;
+}

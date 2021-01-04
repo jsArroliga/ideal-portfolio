@@ -1,12 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import Table from '../shared/Table'
 
 import riskLevelData from '../../data/riskLevelData.json'
 
-import './../../style/index.scss'
-
 function RiskTableList (){
+
+    let riskSelected = useSelector( store => store.riskLevel )
 
     const getTHeaders = () => [ "Risk", "Bonds %", "Large Cap %", "Mid Cap %", "Foreign %", "Small Cap %"];
     const getTRows = () => {
@@ -22,7 +23,9 @@ function RiskTableList (){
             ] 
         } )}
 
-    return <Table name={'risk-table'} headers={ getTHeaders() } rows={ getTRows() }></Table>
+    return <Table name={'risk-table'} rowIsActive={  row => {
+        return parseInt(row[0]) === riskSelected.level
+    } } headers={ getTHeaders() } rows={ getTRows() }></Table>
 }
 
-export default RiskTableList;
+export default RiskTableList

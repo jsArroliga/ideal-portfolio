@@ -119,7 +119,8 @@ function RebalanceTable(  ){
         
     }
     
-    return <div>
+    return <div className="table-scroll rebalance-table">
+        <h5><b>Please Enter Your Current Portfolio</b></h5>
         <table>
             <thead>
                 <tr>
@@ -132,18 +133,16 @@ function RebalanceTable(  ){
             </thead>
             <tbody>
                 <tr>
-                    <td>
-                    <Input name={'bonds'} label={'Bonds $'} value={bonds} changeHandler={ ( value ) =>  setBonds( value )} />
+                    <td className={'rebalance-input'}>
+                    <Input name={'bonds'} label={'Bonds $'} containerClass={'mb-0'} value={bonds} changeHandler={ ( value ) =>  setBonds( value )} />
                     </td>
-                    <td>
-                        <Input value={investmentFixes[ 'Bonds' ][1]} disabled={true}
-                    />
-                    
+                    <td className={'rebalance-result'}>
+                        <Input value={investmentFixes[ 'Bonds' ][1]} inputClass={ investmentFixes[ 'Bonds' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     </td>
-                    <td>
-                        <Input value={investmentFixes[ 'Bonds' ][0]} disabled={true} />
+                    <td className={'rebalance-result'}>
+                        <Input value={investmentFixes[ 'Bonds' ][0]} inputClass={ 'blue-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     </td>
-                    <td rowSpan={5}>
+                    <td rowSpan={5} className={'rebalance-msj'}>
                             <ul>
                                 {
                                 suggestMsj.map( (msj, index) =>(
@@ -154,59 +153,58 @@ function RebalanceTable(  ){
                 </tr>
                 <tr>
                     <td>
-                        <Input name={'largeCap'} label={'Large Cap $'} value={largeCap} changeHandler={ ( value ) =>  setLargeCap( value )} />
+                        <Input name={'largeCap'} label={'Large Cap $'} containerClass={'mb-0'} value={largeCap} changeHandler={ ( value ) =>  setLargeCap( value )} />
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'LargeCap' ][1]} disabled={true} />
-                    
+                        <Input value={investmentFixes[ 'LargeCap' ][1] } inputClass={ investmentFixes[ 'LargeCap' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'LargeCap' ][0]} disabled={true} />
+                        <Input value={investmentFixes[ 'LargeCap' ][0]} inputClass={ 'blue-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     </td>
                     
                 </tr>
                 <tr>
                     <td>
-                        <Input name={'midCap'} label={'Mid Cap $'} value={midCap} changeHandler={ ( value ) =>  setMidCap( value )} />
+                        <Input name={'midCap'} label={'Mid Cap $'} containerClass={'mb-0'} value={midCap} changeHandler={ ( value ) =>  setMidCap( value )} />
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'MidCap' ][1]} disabled={true} />
+                        <Input value={investmentFixes[ 'MidCap' ][1]} inputClass={ investmentFixes[ 'MidCap' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'MidCap' ][0]} disabled={true} />
+                        <Input value={investmentFixes[ 'MidCap' ][0]} inputClass={ 'blue-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                        <Input name={'foreign'} label={'Foreign $'} value={foreign} changeHandler={ ( value ) =>  setForeign( value )} />
+                        <Input name={'foreign'} label={'Foreign $'} containerClass={'mb-0'} value={foreign} changeHandler={ ( value ) =>  setForeign( value )} />
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'Foreign' ][1]} disabled={true} />
+                        <Input value={investmentFixes[ 'Foreign' ][1]} inputClass={ investmentFixes[ 'Foreign' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'Foreign' ][0]} disabled={true} />
+                        <Input value={investmentFixes[ 'Foreign' ][0]} inputClass={ 'blue-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <Input name={'smallCap'} label={'Small Cap $'} value={smallCap} changeHandler={ ( value ) =>  setSmallCap( value )} />
+                        <Input name={'smallCap'} label={'Small Cap $'} containerClass={'mb-0'} value={smallCap} changeHandler={ ( value ) =>  setSmallCap( value )} />
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'SmallCap' ][1]} disabled={true} />
+                        <Input value={investmentFixes[ 'SmallCap' ][1]} inputClass={ investmentFixes[ 'SmallCap' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     
                     </td>
                     <td>
-                        <Input value={investmentFixes[ 'SmallCap' ][0]} disabled={true} />
+                        <Input value={investmentFixes[ 'SmallCap' ][0]} inputClass={ 'blue-color' } containerClass={'mb-0'} tabIndex="-1"/>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <Button bClass={'success'} onClick={  () => { callRebalance() } }>
-                        rebalance
+        <Button bClass={'btn-orange-p expanded'} onClick={  () => { callRebalance() } }>
+                        <b>Rebalance</b>
         </Button>
     </div>
 }

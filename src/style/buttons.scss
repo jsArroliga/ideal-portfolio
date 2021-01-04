@@ -1,0 +1,11 @@
+.custom-btn{
+    border-radius: 5px;
+    color: $white;
+    &.btn-blue{
+        background-color: $blue;
+    }
+    &.btn-orange-p{
+        background-color: $orangeSecondary;
+    }
+}
+

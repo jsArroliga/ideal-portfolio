@@ -1,25 +1,9 @@
 
+@import './colors.scss';
 
-.custom-tab{
-    ul.tabs{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        li{
-            flex: 1;
-            button{
-                width: 100%;
-                padding: 15px;
-                color: #1779ba;
-                &.is-active{
-                    background-color: #e6e6e6;
-                    border : 2px solid #1779ba;
-                    border-radius: 5px ;
-                    &:focus{
-                        outline: 0;
-                    }
-                }
-            }
-        }
-    }
-}
+@import './buttons.scss';
+@import './general.scss';
+@import './header.scss';
+@import './table.scss';
+@import './tabs.scss';
+@import './inputs.scss';

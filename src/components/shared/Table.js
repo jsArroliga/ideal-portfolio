@@ -1,13 +1,11 @@
 import React from 'react'
 
-import './../../style/index.scss'
-
 function Table( props ){
 
-    const { tableName, headers , rows } = props;
+    const { tableName, headers , rows, rowIsActive = ()=>{} } = props;
 
-    return <div>
-        <table>
+    return <div className="table-scroll">
+        <table >
             <thead>
                 <tr>
                     {
@@ -20,7 +18,7 @@ function Table( props ){
             <tbody>
                 {
                     rows.map( (col, index) => {
-                        return <tr key={ `table-${tableName}-row-${index}` }>
+                        return <tr className={ rowIsActive( col ) ? 'row-active' : ''} key={ `table-${tableName}-row-${index}` }>
                             { col.map( (cell, i) => (
                                 <td key={`table-${tableName}-row-cell-${index}-${i}`}> { cell } </td>
                              ) )}

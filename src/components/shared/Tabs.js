@@ -11,7 +11,7 @@ function Tabs ( props ){
             let isActive = index === tabActive;
             return <li key={ `${tabId}-label-${index}` } className={ isActive ? 'is-active'  : ''}>
                         <button  onClick={ (  ) => { setTabActive(index) } } className={isActive? 'is-active' : ''}> 
-                            { tab.label }
+                            <b>{ tab.label }</b>
                         </button>
                     </li>
         } )
@@ -28,7 +28,7 @@ function Tabs ( props ){
         <ul className="tabs" data-tabs id={tabId}>
             { getTabs() }
         </ul>
-        <div className="tabs-content" data-tabs-content={tabId}>
+        <div className="tabs-content rounded mt-1" data-tabs-content={tabId}>
             { getTabsContent() }
         </div>
   </div>

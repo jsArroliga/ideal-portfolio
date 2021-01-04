@@ -23,12 +23,12 @@ function RiskSelector (){
 
     const defaultValue = {
         value : -1,
-        label : "Select Risk Level"
+        label : "Select risk level"
     }
 
 
     return <Select 
-            label={"Select Risk Level"} 
+            label={"Select risk level"} 
             name={"risk-selector"} 
             value={riskLevelSelected.level} 
             options={options} 

@@ -1,0 +1,17 @@
+table{
+    .row-active, .row-active:nth-child(even){
+        background-color: $yellowPrimary;
+    }
+}
+
+.rebalance-table{
+    table{
+        min-width: 500px;
+        .rebalance-input, .rebalance-msj{
+            min-width: 200px;
+        }
+        .rebalance-result{
+            min-width: 100px;
+        }
+    }
+}

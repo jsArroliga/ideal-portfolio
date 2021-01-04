@@ -12,38 +12,34 @@ function RiskSelector ( props ){
     const step = steps[ currentStep ];
 
     const nextBtn = (  ) => {
-        return step.nextStep  && step.isValid() ? <div>
-            
-            <Button bClass="primary" onClick={ (  ) => {
+        return step.nextStep ? 
+            <Button bClass="btn-blue w-half"  disabled={ !step.isValid() }onClick={ (  ) => {
                 setCurrentStep(step.nextStep  )
             } }>
-                Next Step
-            </Button>
-        </div> : null
+                <b>Next Step</b>
+            </Button> : null
     }
 
     const prevBtn = (  ) => {
-        return step.prevStep ? <div>
-            
-            <Button bClass="primary" onClick={ (  ) => {
+        return step.prevStep ? <Button bClass="btn-blue w-half"  onClick={ (  ) => {
                 setCurrentStep(step.prevStep  )
             } }>
-                Prev Step
-            </Button>
-        </div> : null
+                <b>Previous Step</b>
+            </Button> : null
     }
 
 
 
-    return <div>
+    return <div className={props.className}>
         {
             step.content
         }
         {
-            prevBtn()
-        }
-        {
-            nextBtn()
+            <div className={'mt-1 button-group align-right'}>
+                {prevBtn()}
+        
+                {nextBtn()}
+            </div>
         }
     </div>
 }

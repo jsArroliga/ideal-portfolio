@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
 import { useSelector } from 'react-redux'
 
@@ -22,7 +22,10 @@ function RiskResumeTable (){
         ]] : []
     }
 
-    return riskData ? <Table name={'resume-risk-table'} headers={ getTHeaders() } rows={ getTRows() }></Table> : null
+    return riskData ? <Fragment>
+        <h5><b>Risk Level {riskLevelSelected.level}</b></h5>
+        <Table name={'resume-risk-table'} headers={ getTHeaders() } rows={ getTRows() }></Table>
+        </Fragment>  : null
 }
 
 export default RiskResumeTable;
