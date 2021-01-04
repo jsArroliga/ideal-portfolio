@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import Input from './../shared/Input'
+
 import riskLevelData from '../../data/riskLevelData.json'
 import { useSelector } from 'react-redux'
 
@@ -96,12 +98,10 @@ function RebalanceTable(  ){
                         extra.extraAmount = 0
                         pendingAmount = 0
                     }else if( checkSum > 0 ){
-                        console.log( msjTemplate( extra.type, type, pendingAmount ) )
                         _msjs = [..._msjs, msjTemplate( extra.type, type, pendingAmount )]
                         pendingAmount = 0
                         extra.extraAmount = checkSum;
                     }else{
-                        console.log( msjTemplate( extra.type, type, parseFloatFixed(extra.extraAmount) ) )
                         _msjs = [..._msjs, msjTemplate( extra.type, type, parseFloatFixed(extra.extraAmount) )]
                         extra.extraAmount = 0;
                         pendingAmount = checkSum * -1
@@ -131,22 +131,15 @@ function RebalanceTable(  ){
             <tbody>
                 <tr>
                     <td>
-                    <div className="input-group">
-                            <span className="input-group-label" >Bonds $</span>
-                            <input className="input-group-field" value={bonds} onChange={ ( e ) => {
-                                setBonds( e.target.value )
-                            } }></input>
-                        </div>
+                    <Input name={'bonds'} label={'Bonds $'} value={bonds} changeHandler={ ( value ) =>  setBonds( value )} />
                     </td>
                     <td>
-                    <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'Bonds' ][1]} disabled></input>
-                        </div>
+                        <Input value={investmentFixes[ 'Bonds' ][1]} disabled={true}
+                    />
+                    
                     </td>
                     <td>
-                        <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'Bonds' ][0]} disabled></input>
-                        </div>
+                        <Input value={investmentFixes[ 'Bonds' ][0]} disabled={true} />
                     </td>
                     <td rowSpan={5}>
                             <ul>
@@ -159,88 +152,53 @@ function RebalanceTable(  ){
                 </tr>
                 <tr>
                     <td>
-                    <div className="input-group">
-                            <span className="input-group-label" >Large Cap $</span>
-                            <input className="input-group-field" value={largeCap} onChange={ ( e ) => {
-                                setLargeCap( e.target.value )
-                            } }></input>
-                        </div>
+                        <Input name={'largeCap'} label={'Large Cap $'} value={largeCap} changeHandler={ ( value ) =>  setLargeCap( value )} />
                     </td>
                     <td>
-                    <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'LargeCap' ][1]} disabled></input>
-                        </div>
+                        <Input value={investmentFixes[ 'LargeCap' ][1]} disabled={true} />
+                    
                     </td>
                     <td>
-                        <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'LargeCap' ][0]} disabled></input>
-                        </div>
+                        <Input value={investmentFixes[ 'LargeCap' ][0]} disabled={true} />
                     </td>
                     
                 </tr>
                 <tr>
                     <td>
-                    <div className="input-group">
-                            <span className="input-group-label" >Mid Cap $</span>
-                            <input className="input-group-field" value={midCap} onChange={ ( e ) => {
-                                setMidCap( e.target.value )
-                            } }></input>
-                        </div>
+                        <Input name={'midCap'} label={'Mid Cap $'} value={midCap} changeHandler={ ( value ) =>  setMidCap( value )} />
                     </td>
                     <td>
-                    <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'MidCap' ][1]} disabled></input>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'MidCap' ][0]} disabled></input>
-                        </div>
-                    </td>
+                        <Input value={investmentFixes[ 'MidCap' ][1]} disabled={true} />
                     
+                    </td>
+                    <td>
+                        <Input value={investmentFixes[ 'MidCap' ][0]} disabled={true} />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <Input name={'foreign'} label={'Foreign $'} value={foreign} changeHandler={ ( value ) =>  setForeign( value )} />
+                    </td>
+                    <td>
+                        <Input value={investmentFixes[ 'Foreign' ][1]} disabled={true} />
+                    
+                    </td>
+                    <td>
+                        <Input value={investmentFixes[ 'Foreign' ][0]} disabled={true} />
+                    </td>
                 </tr>
                 <tr>
                     <td>
-                    <div className="input-group">
-                            <span className="input-group-label" >Foreign $</span>
-                            <input className="input-group-field" value={foreign} onChange={ ( e ) => {
-                                
-                                setForeign( e.target.value )
-                            } }></input>
-                        </div>
+                        <Input name={'smallCap'} label={'Small Cap $'} value={smallCap} changeHandler={ ( value ) =>  setSmallCap( value )} />
                     </td>
                     <td>
-                    <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'Foreign' ][1]} disabled></input>
-                        </div>
-                    </td>
-                    <td>
-                        <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'Foreign' ][0]} disabled></input>
-                        </div>
-                    </td>
+                        <Input value={investmentFixes[ 'SmallCap' ][1]} disabled={true} />
                     
-                </tr>
-                <tr>
-                    <td>
-                    <div className="input-group">
-                            <span className="input-group-label" >Small Cap $</span>
-                            <input className="input-group-field" value={smallCap} onChange={ ( e ) => {
-                                setSmallCap( e.target.value )
-                            } }></input>
-                        </div>
                     </td>
                     <td>
-                    <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'SmallCap' ][1]} disabled></input>
-                        </div>
+                        <Input value={investmentFixes[ 'SmallCap' ][0]} disabled={true} />
                     </td>
-                    <td>
-                        <div className="input-group">
-                            <input className="input-group-field" value={investmentFixes[ 'SmallCap' ][0]} disabled></input>
-                        </div>
-                    </td>
-                    
                 </tr>
             </tbody>
         </table>
