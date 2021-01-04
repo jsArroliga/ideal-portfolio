@@ -1,9 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
 import Input from './../shared/Input'
 
 import riskLevelData from '../../data/riskLevelData.json'
 import { useSelector } from 'react-redux'
+
+const rebalance = ( tagPrcent, amount, total )=>{
+    const amountByPrcent = (total/100)*tagPrcent
+    return [ parseFloatFixed(amountByPrcent), parseFloatFixed( amountByPrcent - amount )]
+}
+const parseFloatFixed = ( n ) => {
+    
+    try {
+        let parsed = parseFloat( parseFloat(n).toFixed(1) );
+        return isNaN(parsed) ? 0 : parsed
+    }catch(e){
+        console.log(e)
+    }
+    return 0
+}
 
 function RebalanceTable(  ){
 
@@ -30,45 +45,8 @@ function RebalanceTable(  ){
     const headers = ["Current Amount", "Difference", "New Amount", "Recommended Transfers"]
     const tableName="rebalance"
 
-    const rebalance = ( tagPrcent, amount, total )=>{
-        const amountByPrcent = (total/100)*tagPrcent
-        return [ parseFloatFixed(amountByPrcent), parseFloatFixed( amountByPrcent - amount )]
-    }
+    const getSuggestMsj = useCallback( () => {
 
-    useEffect( ( ) => {
-        setSuggestMsj( getSugerences() )
-    },[ investmentFixes, setSuggestMsj ] )
-
-    let callRebalance = (  ) => {
-        let list = [
-            ['Bonds', bonds],
-            ['LargeCap', largeCap],
-            ['MidCap', midCap],
-            ['Foreign', foreign],
-            ['SmallCap',smallCap]
-        ]
-        const total = list.reduce( ( prevValue, currentValue )=>{   
-            return prevValue + parseFloatFixed(currentValue[1])
-         }, 0 )
-        
-        setInvestmentFixes( list.reduce( (prevValue, currentValue) => {
-            return {...prevValue, [currentValue[0]] : rebalance( riskDataSelected[currentValue[0]],  currentValue[1], total )}
-        },{} ) )
-        
-    }
-    
-    const parseFloatFixed = ( n ) => {
-        
-        try {
-            let parsed = parseFloat( parseFloat(n).toFixed(1) );
-            return isNaN(parsed) ? 0 : parsed
-        }catch(e){
-            console.log(e)
-        }
-        return 0
-    }
-
-    const getSugerences = () => {
         let investmentWithExtra = Object.keys(investmentFixes).filter( investment => {
             return investmentFixes[investment][1] < 0
         } ).reduce( ( prevValue, investmentType )=>{ 
@@ -115,8 +93,30 @@ function RebalanceTable(  ){
             
         }, [] )
 
-    }
+    },[ investmentFixes ])
 
+    useEffect( (  ) => {
+        setSuggestMsj( getSuggestMsj() )
+    }, [investmentFixes, getSuggestMsj] )
+
+    let callRebalance = (  ) => {
+        let list = [
+            ['Bonds', bonds],
+            ['LargeCap', largeCap],
+            ['MidCap', midCap],
+            ['Foreign', foreign],
+            ['SmallCap',smallCap]
+        ]
+        const total = list.reduce( ( prevValue, currentValue )=>{   
+            return prevValue + parseFloatFixed(currentValue[1])
+         }, 0 )
+        
+        setInvestmentFixes( list.reduce( (prevValue, currentValue) => {
+            return {...prevValue, [currentValue[0]] : rebalance( riskDataSelected[currentValue[0]],  currentValue[1], total )}
+        },{} ) )
+        
+    }
+    
     return <div>
         <table>
             <thead>
