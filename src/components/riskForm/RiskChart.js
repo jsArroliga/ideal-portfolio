@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import Chart from "react-google-charts";
 
-import riskLevelData from './../../data/riskLevelData.json'
+import riskLevelData from '../../data/riskLevelData.json'
 
 function ChartRisk( ){
 

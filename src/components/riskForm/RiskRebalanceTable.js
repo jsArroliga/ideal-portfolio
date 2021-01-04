@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react'
 
-import Input from './../shared/Input'
+import Input from '../shared/Input'
 
 import riskLevelData from '../../data/riskLevelData.json'
 import { useSelector } from 'react-redux'
 
-import Button from './../shared/Button'
+import Button from '../shared/Button'
 
 const rebalance = ( tagPrcent, amount, total )=>{
     const amountByPrcent = (total/100)*tagPrcent

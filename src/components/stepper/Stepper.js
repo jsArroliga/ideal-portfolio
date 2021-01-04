@@ -1,5 +1,4 @@
 
-
 import React, { useState } from 'react'
 
 import Button from './../shared/Button'
@@ -13,7 +12,7 @@ function RiskSelector ( props ){
     const step = steps[ currentStep ];
 
     const nextBtn = (  ) => {
-        return step.nextStep ? <div>
+        return step.nextStep  && step.isValid() ? <div>
             
             <Button bClass="primary" onClick={ (  ) => {
                 setCurrentStep(step.nextStep  )
