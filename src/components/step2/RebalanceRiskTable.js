@@ -70,8 +70,8 @@ function RebalanceTable(  ){
         let investmentWithExtra = Object.keys(investmentFixes).filter( investment => {
             return investmentFixes[investment][1] < 0
         } ).reduce( ( prevValue, investmentType )=>{ 
-            return [...prevValue,  {type : investmentType, extraAmount : investmentFixes[investmentType][1] } ] 
-        },[] ).sort( (itemA, itemB) =>  { return itemA.extraAmount > itemB.extraAmount ? 1 : -1 })
+            return [...prevValue,  {type : investmentType, extraAmount : investmentFixes[investmentType][1] * -1 } ] 
+        },[] ).sort( (itemA, itemB) =>  { return itemA.extraAmount < itemB.extraAmount ? 1 : -1 })
 
         let investmentToValance = Object.keys(investmentFixes).filter( investment => {
             return investmentFixes[investment][1] > 0
@@ -88,25 +88,25 @@ function RebalanceTable(  ){
             
             while( pendingAmount > 0 && indexExtraAmount < investmentWithExtra.length ){
                 let extra = investmentWithExtra[indexExtraAmount]
-                console.log( indexExtraAmount )
                 
-                let checkSum = parseFloatFixed( extra.extraAmount + pendingAmount );
-                if( checkSum === 0 ){
-                    _msjs = _msjs = [..._msjs, msjTemplate( extra.type, type, pendingAmount )]
-                    extra.extraAmount = 0
-                    pendingAmount = 0
-                }else if( checkSum > 0 ){
-                    _msjs = [..._msjs, msjTemplate( extra.type, type, parseFloatFixed(extra.extraAmount * -1) )]
-                    pendingAmount = checkSum
-                    extra.extraAmount = 0;
+                let checkSum = parseFloatFixed( extra.extraAmount - pendingAmount );
+                if( extra.extraAmount > 0 ){
+                    if( checkSum === 0 ){
+                        _msjs = _msjs = [..._msjs, msjTemplate( extra.type, type, extra.extraAmount )]
+                        extra.extraAmount = 0
+                        pendingAmount = 0
+                    }else if( checkSum > 0 ){
+                        console.log( msjTemplate( extra.type, type, pendingAmount ) )
+                        _msjs = [..._msjs, msjTemplate( extra.type, type, pendingAmount )]
+                        pendingAmount = 0
+                        extra.extraAmount = checkSum;
+                    }else{
+                        console.log( msjTemplate( extra.type, type, parseFloatFixed(extra.extraAmount) ) )
+                        _msjs = [..._msjs, msjTemplate( extra.type, type, parseFloatFixed(extra.extraAmount) )]
+                        extra.extraAmount = 0;
+                        pendingAmount = checkSum * -1
+                    }
                 }else{
-                    _msjs = [..._msjs, msjTemplate( extra.type, type, pendingAmount )]
-                    pendingAmount = 0
-                    extra.extraAmount = checkSum;
-                     
-                }
-                investmentWithExtra[indexExtraAmount] = extra;
-                if( extra.extraAmount === 0 ){
                     indexExtraAmount+=1
                 }
             }
