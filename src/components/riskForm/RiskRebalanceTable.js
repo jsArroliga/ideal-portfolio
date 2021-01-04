@@ -134,7 +134,7 @@ function RebalanceTable(  ){
             <tbody>
                 <tr>
                     <td className={'rebalance-input'}>
-                    <Input name={'bonds'} label={'Bonds $'} containerClass={'mb-0'} value={bonds} changeHandler={ ( value ) =>  setBonds( value )} />
+                    <Input name={'bonds'} label={'Bonds $'} pattern={/^[0-9]*\.?[0-9]*$/} containerClass={'mb-0'} value={bonds} changeHandler={ ( value ) =>  setBonds( value )} />
                     </td>
                     <td className={'rebalance-result'}>
                         <Input value={investmentFixes[ 'Bonds' ][1]} inputClass={ investmentFixes[ 'Bonds' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
@@ -153,7 +153,7 @@ function RebalanceTable(  ){
                 </tr>
                 <tr>
                     <td>
-                        <Input name={'largeCap'} label={'Large Cap $'} containerClass={'mb-0'} value={largeCap} changeHandler={ ( value ) =>  setLargeCap( value )} />
+                        <Input name={'largeCap'} pattern={/^[0-9]*\.?[0-9]*$/} label={'Large Cap $'} containerClass={'mb-0'} value={largeCap} changeHandler={ ( value ) =>  setLargeCap( value )} />
                     </td>
                     <td>
                         <Input value={investmentFixes[ 'LargeCap' ][1] } inputClass={ investmentFixes[ 'LargeCap' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
@@ -165,7 +165,7 @@ function RebalanceTable(  ){
                 </tr>
                 <tr>
                     <td>
-                        <Input name={'midCap'} label={'Mid Cap $'} containerClass={'mb-0'} value={midCap} changeHandler={ ( value ) =>  setMidCap( value )} />
+                        <Input name={'midCap'} pattern={/^[0-9]*\.?[0-9]*$/} label={'Mid Cap $'} containerClass={'mb-0'} value={midCap} changeHandler={ ( value ) =>  setMidCap( value )} />
                     </td>
                     <td>
                         <Input value={investmentFixes[ 'MidCap' ][1]} inputClass={ investmentFixes[ 'MidCap' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
@@ -178,7 +178,7 @@ function RebalanceTable(  ){
 
                 <tr>
                     <td>
-                        <Input name={'foreign'} label={'Foreign $'} containerClass={'mb-0'} value={foreign} changeHandler={ ( value ) =>  setForeign( value )} />
+                        <Input name={'foreign'} pattern={/^[0-9]*\.?[0-9]*$/} label={'Foreign $'} containerClass={'mb-0'} value={foreign} changeHandler={ ( value ) =>  setForeign( value )} />
                     </td>
                     <td>
                         <Input value={investmentFixes[ 'Foreign' ][1]} inputClass={ investmentFixes[ 'Foreign' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
@@ -190,7 +190,7 @@ function RebalanceTable(  ){
                 </tr>
                 <tr>
                     <td>
-                        <Input name={'smallCap'} label={'Small Cap $'} containerClass={'mb-0'} value={smallCap} changeHandler={ ( value ) =>  setSmallCap( value )} />
+                        <Input name={'smallCap'} pattern={/^[0-9]*\.?[0-9]*$/} label={'Small Cap $'} containerClass={'mb-0'} value={smallCap} changeHandler={ ( value ) =>  setSmallCap( value )} />
                     </td>
                     <td>
                         <Input value={investmentFixes[ 'SmallCap' ][1]} inputClass={ investmentFixes[ 'SmallCap' ][1] >= 0 ? 'green-color' : 'red-color' } containerClass={'mb-0'} tabIndex="-1"/>
