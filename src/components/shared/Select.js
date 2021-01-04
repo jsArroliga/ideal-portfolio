@@ -3,7 +3,7 @@ import React from 'react'
 
 function Selector ( props ){
 
-    const { name, label, value, changeHandler, defaultValue, options } = props
+    const { name='', label='', value='', changeHandler, defaultValue, options=[] } = props
 
     return <div>
         <label>{ label }

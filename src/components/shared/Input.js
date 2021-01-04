@@ -4,7 +4,7 @@ import React from 'react'
 
 function Selector ( props ){
 
-    const { name='', label, value='', changeHandler, disabled=false, pattern } = props
+    const { name='', label, value='', changeHandler, disabled=false, pattern='' } = props
 
     return <div className="input-group">
                 { label ? <span className="input-group-label" >{label}</span> : null }

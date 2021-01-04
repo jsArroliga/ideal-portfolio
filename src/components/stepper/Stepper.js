@@ -1,35 +1,52 @@
 
 
-import React from 'react'
+import React, { useState } from 'react'
 
-import { useDispatch, useSelector } from 'react-redux'
-import updateRiskLevel from '../../actions/updateRiskLevel'
+import Button from './../shared/Button'
 
-import Select from './../shared/Select'
+function RiskSelector ( props ){
 
-function RiskSelector (){
+    const { startAt, steps } = props;
 
-    const dispatch = useDispatch()
-    let riskLevelSelected = useSelector( store => store.riskLevel )
-    
-    const options = [1,2,3,4,5,6,7,8,9,10].map( (level, index) => {
-        return {
-            value : level,
-            label : level
+    const [ currentStep, setCurrentStep ] = useState( startAt );
+
+    const step = steps[ currentStep ];
+
+    const nextBtn = (  ) => {
+        return step.nextStep ? <div>
+            
+            <Button bClass="primary" onClick={ (  ) => {
+                setCurrentStep(step.nextStep  )
+            } }>
+                Next Step
+            </Button>
+        </div> : null
+    }
+
+    const prevBtn = (  ) => {
+        return step.prevStep ? <div>
+            
+            <Button bClass="primary" onClick={ (  ) => {
+                setCurrentStep(step.prevStep  )
+            } }>
+                Prev Step
+            </Button>
+        </div> : null
+    }
+
+
+
+    return <div>
+        {
+            step.content
         }
-    } )
-
-    const updateLevelSelected = ( level ) => {
-        dispatch(updateRiskLevel( { level } ));
-    }
-
-    const defaultValue = {
-        value : -1,
-        label : "Select Risk Level"
-    }
-
-
-    return <div class="grid-container full"></div>
+        {
+            prevBtn()
+        }
+        {
+            nextBtn()
+        }
+    </div>
 }
 
 export default RiskSelector;
