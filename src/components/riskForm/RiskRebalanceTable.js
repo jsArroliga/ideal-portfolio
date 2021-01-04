@@ -203,7 +203,7 @@ function RebalanceTable(  ){
             </tbody>
         </table>
 
-        <Button bClass={'btn-orange-p expanded'} onClick={  () => { callRebalance() } }>
+        <Button bClass={'btn-orange-p expanded large'} onClick={  () => { callRebalance() } }>
                         <b>Rebalance</b>
         </Button>
     </div>
