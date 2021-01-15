@@ -16,6 +16,15 @@ function RiskForm() {
 
   let riskSelected = useSelector( store => store.riskLevel )
 
+  let tabs = [{
+    'label' : 'Risk Table',
+    'component' : <RiskTableList></RiskTableList>
+  },
+  {
+    'label' : 'Risk Chart',
+    'component' : <RiskChart></RiskChart>
+  }]
+
   const steps = {
     1 : {
       nextStep : 2,
@@ -24,15 +33,12 @@ function RiskForm() {
       },
       content : <div>
               <RiskSelector></RiskSelector>
-              <Tabs tabsData={
-                [{
-                  'label' : 'Risk Table',
-                  'component' : <RiskTableList></RiskTableList>
-                },
-                {
-                    'label' : 'Risk Chart',
-                    'component' : <RiskChart></RiskChart>
-                }]} ></Tabs>
+              <div className={'show-for-medium'}>
+                <Tabs tabsData={ tabs } ></Tabs>
+              </div>
+              <div className={'show-for-small-only'}>
+                <RiskChart></RiskChart>
+              </div>
       </div>
     },
     2 : {

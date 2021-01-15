@@ -23,7 +23,7 @@ function Tabs ( props ){
         </div>
     }
 
-    return <div className='custom-tab'>
+    return <div className={`custom-tab ${props.className}`}>
         
         <ul className="tabs" data-tabs id={tabId}>
             { getTabs() }

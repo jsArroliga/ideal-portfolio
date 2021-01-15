@@ -2,7 +2,11 @@
 html{
     font-size: 14px;
 }
-
+p{
+    @media (max-width: 768px) {
+        font-size: 12px;
+    }
+}
 .mr-1{
     margin-right: 1em;
 }

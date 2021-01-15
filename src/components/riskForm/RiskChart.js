@@ -31,7 +31,7 @@ function ChartRisk( ){
     return riskLevelData[ riskLevelSelected.level ] ? <Chart
             chartType="PieChart"
             width="100%"
-            height="400px"
+            height="auto"
             data={ [ ["Name", "Amount porcent"], ...riskChartData( ) ] }
             options={options}
           /> : <h5 className={'text-center'}> Please , select a risk level </h5>

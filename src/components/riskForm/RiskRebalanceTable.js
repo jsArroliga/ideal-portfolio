@@ -44,7 +44,7 @@ function RebalanceTable(  ){
     let riskLevelSelected = useSelector( store => store.riskLevel )
     let riskDataSelected = riskLevelData[ riskLevelSelected.level ]
 
-    const headers = ["Current Amount", "Difference", "New Amount", "Recommended Transfers"]
+    const headers = ["Current Amount", "Difference", "New Amount"]
     const tableName="rebalance"
 
     const getSuggestMsj = useCallback( () => {
@@ -119,7 +119,8 @@ function RebalanceTable(  ){
         
     }
     
-    return <div className="table-scroll rebalance-table">
+    return  <div className={'rebalance-table'}>
+        <div className="table-scroll ">
         <h5><b>Please Enter Your Current Portfolio</b></h5>
         <table>
             <thead>
@@ -141,14 +142,6 @@ function RebalanceTable(  ){
                     </td>
                     <td className={'rebalance-result'}>
                         <Input value={investmentFixes[ 'Bonds' ][0]} inputClass={ 'blue-color' } containerClass={'mb-0'} tabIndex="-1"/>
-                    </td>
-                    <td rowSpan={5} className={'rebalance-msj'}>
-                            <ul>
-                                {
-                                suggestMsj.map( (msj, index) =>(
-                                    <li key={`msj-list-${index}`}> { msj } </li>
-                                ) )}
-                            </ul>
                     </td>
                 </tr>
                 <tr>
@@ -202,11 +195,22 @@ function RebalanceTable(  ){
                 </tr>
             </tbody>
         </table>
-
-        <Button bClass={'btn-orange-p expanded large'} onClick={  () => { callRebalance() } }>
-                        <b>Rebalance</b>
-        </Button>
     </div>
+    {
+        suggestMsj.length > 0 ? <div>    
+        {
+        suggestMsj.map( (msj, index) =>(
+            <div class="callout primary" key={`msj-list-${index}`}>
+            <p>{ msj }</p>
+            </div>
+        ) )}
+    
+        </div> : null
+    }
+    <Button bClass={'btn-orange-p expanded large'} onClick={  () => { callRebalance() } }>
+        <b>Rebalance</b>
+    </Button>
+</div>
 }
 
 export default RebalanceTable;
